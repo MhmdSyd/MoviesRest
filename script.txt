@@ -1,0 +1,9 @@
+from movies.models import MoviesRest 
+serialize = MoviesSerializers()
+import pandas as pd
+df = pd.read_csv('movies_Clean.csv')
+df.columns = ['show_id', 'title', 'genre', 'year', 'rating', 'count', 'poster']
+for index, row in df.iloc[5:100].iterrows():
+    MoviesRest.objects.create(show_id=row['show_id'], title=row['title'], genre=['genre'], year=row['year'], rating=row['rating'],count=row['count'], poster=row['poster'])
+
+exit()
